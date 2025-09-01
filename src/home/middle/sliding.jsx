@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState, useEffect} from 'react'
 import {Link} from "react-router-dom"
 import Sdata from "./slide";
 
@@ -7,8 +7,27 @@ export default function Slide({functi, matchh, clean, hide}) {
 
  const [index, setIndex]=useState(0)
 
+//  useEffect(()=>{
+//   setTimeout(()=>{
+//     if(index < Sdata.length){
+//       setIndex(index+1);
+//     }else{
+//       setIndex(0)
+//     }
+    
+//   },2000)
+//  },[])
 
-   
+
+  setTimeout(()=>{
+    if(index < Sdata.length-1){
+    setIndex(index+1)
+  }else{
+    setIndex(0)
+  }
+  },3000)
+
+
     
 
   return (

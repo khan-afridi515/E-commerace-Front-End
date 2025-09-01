@@ -97,8 +97,6 @@ const Sign = () => {
         alert("Your password and confirm password doesn't match!")
       }else{
         const msg2 = localStorage.getItem("msg");
-        console.log(msg2);
-        alert(msg2);
 
         const newClient = {
           username : username,
@@ -120,6 +118,7 @@ const Sign = () => {
 
          localStorage.setItem("msg",sentMsg);
          console.log(res.data.msg)
+         alert(res.data.msg);
          nav('/');
        })
       
