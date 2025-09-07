@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from "react-router-dom";
 import {useRef, useState} from "react";
-const Navbar = ({find, length, match, funct, product}) => {
+const Navbar = ({find, length, match, funct, product, myUser, setMyUser}) => {
 
   const [inpVal, setInpVal] = useState("");
   
@@ -25,6 +25,10 @@ const Navbar = ({find, length, match, funct, product}) => {
     time.current.style.display="none"
 
   }
+
+  const giveName = localStorage.getItem("username");
+  setMyUser(giveName);
+  console.log(giveName);
   return (
     <div>
        <section>
@@ -35,7 +39,9 @@ const Navbar = ({find, length, match, funct, product}) => {
                     <input type="text" value={inpVal} onChange={(e)=>setInpVal(e.target.value)} className='lg:w-100 sm:w-70 w-90 border border-white p-2 outline-none text-xl rounded-xl '></input>
                     <Link to="/shop"><button className="lg:w-20 sm:w-15  w-26 border border-white md:h-12 sm:h-17 h-12 px-1 py-1.5 lg:text-xl sm:text-sm text-xl rounded-xl" onClick={()=>find(inpVal)}>Search</button></Link>
                 </div>
+                {myUser && <h1 className='text-2xl font-bold mt-3'>{myUser}</h1>}
             </div>
+            
          </div>
 
          <div className='bg-orange-400 w-full py-3 px-7 '>

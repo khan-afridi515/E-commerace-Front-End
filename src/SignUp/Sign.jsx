@@ -15,7 +15,7 @@ const Sign = () => {
  const [password, setPassword] = useState("");
  const [CPass, setCPass] = useState("");
  const [address, setAddress] = useState("");
-
+ const [preview, setPreview] = useState(null);
 
  
   const inp1 = useRef();
@@ -25,6 +25,25 @@ const Sign = () => {
   const word = useRef();
   const Cword = useRef();
   const adddress = useRef();
+  const imgRef = useRef();
+
+  function handleImg(e){
+    const myFile = e.target.files[0];
+    setImg(myFile);
+
+    const myUrl = URL.createObjectURL(myFile);
+    setPreview(myUrl);
+    console.log(preview);
+  }
+
+  function imageVarify(){
+    if(preview === null){
+      imgRef.current.innerText = "Enter image here!";
+      return false;
+    }
+    imgRef.current.innerText = ""
+    return true;
+  }
 
   function name(){
     if(username === ""){
@@ -92,7 +111,7 @@ const Sign = () => {
 
   function submit(e){
     e.preventDefault();
-    if(name() && Fname() && contactt() && mailing()  && authentic() && Cauthentic() && location()){
+    if(imageVarify() && name() && Fname() && contactt() && mailing()  && authentic() && Cauthentic() && location()){
       if(password !== CPass){
         alert("Your password and confirm password doesn't match!")
       }else{
@@ -132,9 +151,13 @@ const Sign = () => {
     <div className='flex justify-center items-center my-20'>
       <form className='border border-black md:w-180  sm:w-150  w-130 px-8 py-4 rounded-md flex flex-col' onSubmit={submit}>
         <h1 className='text-2xl font-bold text-center'>Sign Up Form</h1>
-
-        <img src="man.jpg" className='w-40 h-40 rounded-full m-auto my-6 border-2xl border-green-500'></img>
-        <input type="file" name="file" ></input>
+        
+        <div className='flex flex-col gap-1'>
+        <img src={preview} className='w-30 h-30 rounded-full m-auto my-6 border-2xl border-green-500' alt="nopicture"></img>
+        <input type="file" accept="image/*" onChange={handleImg} name="file" ></input>
+        <p className='text-red-500' ref={imgRef}></p>
+        </div>
+        
         <div className='w-[100%] my-7'>
 
           <div className='w-[100%] flex sm:flex-row flex-col gap-4 mb-6'>

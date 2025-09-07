@@ -3,7 +3,7 @@ import {Add_user} from "./api/apiUrl";
 import {loginUrl} from "./api/login";
 import axios from 'axios';
 import {useNavigate} from "react-router-dom";
-const Login = ({protect, clear}) => {
+const Login = ({clear, myPro}) => {
 
     const nav = useNavigate();
 
@@ -39,6 +39,9 @@ const Login = ({protect, clear}) => {
           const TokenData = res.data.userToken
           localStorage.setItem("token",TokenData)
           setMsg(res.data);
+          const myName = res.data.LoginUser.username;
+          localStorage.setItem("username",myName)
+          myPro(myName);
           nav('/')
           
         })

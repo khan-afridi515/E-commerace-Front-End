@@ -30,6 +30,9 @@ const getData = () =>{
   const [myArr, setMyArr] = useState(getData);
   const [protection, setProtection] = useState()
   const [allProducts, setAllProducts] = useState(0)
+  const [username, setUsername] = useState('');
+
+  
 
   useEffect(()=>{
     const allQty = myArr.reduce((sum, line)=>sum + line.qty, 0);
@@ -107,30 +110,26 @@ function remove(){
   given.current.style.display="none";
 }
 
-useEffect(()=>{
-  const datafromlocal = localStorage.getItem("token");
-  if(datafromlocal){
-    console.log("data from local",datafromlocal)
-    protect(datafromlocal);
-  }
-},[])
+// useEffect(()=>{
+//   const datafromlocal = localStorage.getItem("token");
+//   if(datafromlocal){
+//     console.log("data from local",datafromlocal)
+//     protect(datafromlocal);
+//   }
+// },[])
 
 
-function protect(element){
-//  const practice = element;
+// function protect(element){
+// //  const practice = element;
  
- setProtection(element);
-}
+//  setProtection(element);
+// }
 
 
 function finsih(){
   localStorage.clear();
-  setProtection(null);
-  console.log("My Protection =",protection)
+  setUsername('');
   remove();
-  if(!protection){
-    alert("You are logged out!")
-  }
 }
 
 // function finish(){
@@ -143,16 +142,16 @@ function finsih(){
   return (
     <div>
       <BrowserRouter>
-      <Navbar find={search} length={length} funct={shown} product={allProducts} />
+      <Navbar find={search} length={length} funct={shown} product={allProducts} myUser={username} setMyUser={setUsername}/>
       <Routes>
       <Route path="/" element={<Home functt={shown} match={given} clear={finsih} />}></Route>
       <Route path="/sign" element={<Sign/>}></Route>
-      <Route path="/login" element={<Login protect={protect} />}></Route>
+      <Route path="/login" element={<Login myPro={setUsername}/>}></Route>
       
-      <Route path="/shop" element={<ProtectedRoute protection={protection}><Shop  shopItem={Add} myItem={myItem}/></ProtectedRoute>}></Route>
-      <Route path="about" element={<ProtectedRoute protection={protection}><Abouttt/></ProtectedRoute>}></Route>
-      <Route path="contact" element={<ProtectedRoute protection={protection}><Contact/></ProtectedRoute>}></Route>
-      <Route path="cart" element={<ProtectedRoute protection={protection}><Cartt array={myArr} cart={Add} decrease={decItem}  clear={clear} /></ProtectedRoute>}></Route>
+      <Route path="/shop" element={<ProtectedRoute ><Shop  shopItem={Add} myItem={myItem}/></ProtectedRoute>}></Route>
+      <Route path="/about" element={<ProtectedRoute ><Abouttt/></ProtectedRoute>}></Route>
+      <Route path="/contact" element={<ProtectedRoute ><Contact/></ProtectedRoute>}></Route>
+      <Route path="/cart" element={<ProtectedRoute ><Cartt array={myArr} cart={Add} decrease={decItem}  clear={clear} /></ProtectedRoute>}></Route>
       </Routes>
       <Foot/>
       
