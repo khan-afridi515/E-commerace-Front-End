@@ -1,11 +1,18 @@
 
 import {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 
 // onClick={()=>carting(item)}
-const Shop = ({myItem, shopItem}) => {
+const Shop = ({myItem, shopItem, work, funct}) => {
 
+  const nav = useNavigate();
+
+  function reverse(){
+    nav('/');
+    funct(false);
+  }
   
   return (
     <div>
@@ -52,8 +59,12 @@ const Shop = ({myItem, shopItem}) => {
         })
       }
     
+
+    
  
       </div>
+
+      {work && <div><button onClick={reverse} className='bg-red-500 py-1 px-3 text-white rounded-md cursor-pointer'>Back</button></div>}
 
     </div>
       

@@ -85,8 +85,8 @@ const Test = () => {
        </div>
 
        <div className='flex justify-center gap-1'>
-        <button className='w-10 h-10 rounded-full text-white bg-gray-500 flex justify-center items-center ' onClick={increase}>Next</button>
-        <button className='w-10 h-10 rounded-full text-white bg-gray-500 flex justify-center items-center' onClick={decrease}>Prev</button>
+        <button className='w-10 h-10 rounded-full text-white bg-gray-500 flex justify-center items-center cursor-pointer ' onClick={increase}>Next</button>
+        <button className='w-10 h-10 rounded-full text-white bg-gray-500 flex justify-center items-center cursor-pointer' onClick={decrease}>Prev</button>
        </div>
     </div>
   )

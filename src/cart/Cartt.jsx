@@ -75,7 +75,7 @@ const Cartt = ({array, cart, decrease, clear, holeQty}) => {
 
 
     {
-      array.length && (<div className='flex justify-center items-center my-6'><button className='px-4 py-2 bg-yellow-600 rounded-md text-white cursor-pointer' onClick={clear}>Clear All</button></div>)
+      array.length > 0 && (<div className='flex justify-center items-center my-6'><button className='px-4 py-2 bg-yellow-600 rounded-md text-white cursor-pointer' onClick={clear}>Clear All</button></div>)
     }
     
        

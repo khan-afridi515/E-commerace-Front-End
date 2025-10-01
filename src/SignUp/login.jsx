@@ -34,13 +34,12 @@ const Login = ({clear, myPro}) => {
        console.log(HoleUrl);
        axios.post(HoleUrl, newUserData)
         .then((res) => {
-          console.log("This is my response",res)
-          console.log("This is proper data",res.data.userToken)
           const TokenData = res.data.userToken
           localStorage.setItem("token",TokenData)
           setMsg(res.data);
-          const myName = res.data.LoginUser.username;
+          const myName = res.data.LoginUser.img;
           localStorage.setItem("username",myName)
+          localStorage.setItem("myProfileData", JSON.stringify(res.data.LoginUser));
           myPro(myName);
           nav('/')
           

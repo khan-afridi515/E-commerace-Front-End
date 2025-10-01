@@ -117,20 +117,29 @@ const Sign = () => {
       }else{
         const msg2 = localStorage.getItem("msg");
 
-        const newClient = {
-          username : username,
-          fatherName : fatherName,
-          contact : contact,
-          email : email,
-          password : password,
-          address : address
-       }
+      //   const newClient = {
+      //     username : username,
+      //     fatherName : fatherName,
+      //     contact : contact,
+      //     email : email,
+      //     password : password,
+      //     address : address
+      //  }
+
+      const formData = new FormData();
+      formData.append("username",username);
+      formData.append("fatherName", fatherName);
+      formData.append("contact", contact);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("address", address);
+      formData.append("img", img);
       
        const holeUrl2 = url1 + url2;
        
        console.log(holeUrl2);
        
-       axios.post(holeUrl2, newClient)
+       axios.post(holeUrl2, formData)
        .then((res) => {
          console.log("this is response",res);
          const sentMsg = res.data.msg

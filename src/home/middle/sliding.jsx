@@ -33,7 +33,6 @@ export default function Slide({functi, matchh, clean, hide}) {
   return (
     <div className="w-full bg-black">
     <div className='p-2 w-50 hidden border border-yellow-600' ref={matchh}>
-            {/* <Link to='/signin'><p className='w-full py-2 px-1 bg-yellow-600 text-white mb-1 font-bold'>Sign In</p></Link> */}
             <Link to='/sign'><p className='w-full py-2 px-1 bg-yellow-600 text-white mb-1 font-bold'>Sign Up</p></Link>
             <Link to='/login'><p className='w-full py-2 px-1 bg-yellow-600 text-white mb-1 font-bold'>Login</p></Link>
             <button type="button" className='w-full py-2 px-1 bg-yellow-600 text-white font-bold cursor-pointer text-left' onClick={clean}>Log out</button>
